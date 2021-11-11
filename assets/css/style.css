@@ -1,0 +1,123 @@
+/* ==== GLOBAL ==========================================*/
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+th, td {
+  font-weight: 400;
+}
+:root {
+  --color-text: #1D4859;
+  --color-text-option: #969CB2;
+}
+body {
+  font-family: 'Poppins', sans-serif;
+  background: #E5E5E5;
+}
+.logo-cipher {
+  color: #29A632;
+}
+
+/* ==== HEADER ==========================================*/
+header {
+  width: 100%;
+  background: #315934;
+  text-align: center;
+}
+.logo {
+  padding: 1.875rem 0 11.625rem 0;
+  color: #F2F2F2;
+}
+
+/* ==== BALANCE ==========================================*/
+.balance {
+  width: 100%;
+  display: flex;
+  padding: 0 7rem 4rem 7rem;
+  gap: 2rem;
+  margin-top: -6.25rem;
+}
+.balance-card {
+  background: #FEFEFE;
+  padding: 1.5rem 0rem 1.125rem 2rem;
+  width: 100%;
+  border-radius: 0.25rem;
+  color: var(--color-text);
+}
+.balance-card-title {
+  font-size: 1rem;
+  font-weight: 400;
+  margin-bottom: 0.875rem;
+}
+.balance-card-value {
+  font-size: 2.25rem;
+  font-weight: 400;
+}
+div.balance-card-positive {
+  background: #29A632;
+  color: #F2F2F2;
+}
+div.balance-card-negative {
+  background: #E92929;
+  color: #F2F2F2;
+}
+
+/* ==== TRANSACTIONS ==========================================*/
+.transactions {
+  padding: 0 7rem 5rem 7rem;
+}
+.transactions-table {
+  width: 100%;
+  border-spacing: 0 0.5rem;
+}
+.transactions-table thead {
+  color: var(--color-text-option);
+  font-weight: 400;
+  font-size: 1rem;
+}
+.transactions-table thead tr th {
+  padding: 1.25rem 2rem;
+  text-align: left;
+}
+.transactions-table .table-head-date {
+  text-align: center;
+}
+.transactions-table tbody {
+  background: #FEFEFE;
+  font-size: 1rem;
+  font-weight: 400;
+}
+.transactions-table tbody tr {
+  opacity: 0.75;
+}
+.transactions-table tbody tr:hover {
+  opacity: 1;
+}
+.transactions-table tbody tr td {
+  padding: 1.25rem 2rem;
+}
+.transactions-table .table-body-description {
+  border-radius: 0.25rem 0 0 0.25rem;
+  color: var(--color-text);
+}
+td.income {
+  color: #29A632;
+}
+td.expense {
+  color: #E92929;
+}
+.transactions-table .table-body-date {
+  border-radius: 0 0.25rem 0.25rem 0;
+  text-align: center;
+  color: var(--color-text-option);
+}
+
+/* ==== FOOTER ==========================================*/
+footer {
+  text-align: center;
+  padding-bottom: 2rem;
+}
+.footer-logo {
+  color: var(--color-text);
+}
