@@ -40,12 +40,14 @@
       </div>
     </section>
     <section class="transactions">
+      <a onclick=Modal.open() class="new-transaction">+ Nova Transação</a>
       <table class="transactions-table">
         <thead>
           <tr>
             <th class="table-head-description">Descrição</th>
             <th class="table-head-value">Valor</th>
             <th class="table-head-date">Data</th>
+            <th></th>
           </tr>
         </thead>
         <tbody>
@@ -53,23 +55,67 @@
             <td class="table-body-description">Desenvolvimento de site</td>
             <td class="table-body-value income">R$ 12.000,00</td>
             <td class="table-body-date">13/04/2021</td>
+            <td class="table-icon-remove"><img src="./assets/images/minus.svg" alt="Ícone de remover"></td> 
           </tr>
           <tr>
             <td class="table-body-description">Aluguel</td>
             <td class="table-body-value expense">-R$ 1.200,00</td>
             <td class="table-body-date">27/03/2021</td>
+            <td class="table-icon-remove"><img src="./assets/images/minus.svg" alt="Ícone de remover"></td>
+
           </tr>
           <tr>
             <td class="table-body-description">Computador</td>
             <td class="table-body-value income">R$ 5.400,00</td>
             <td class="table-body-date">15/03/2021</td>
+            <td class="table-icon-remove"><img src="./assets/images/minus.svg" alt="Ícone de remover"></td>
+
           </tr>
         </tbody>
       </table>
     </section>
+    <div class="transactions-modal" data-modal>
+      <div class="modal-container">
+        <h2 class="modal-title">Nova Transação</h2>
+        <form action="" class="modal-form">
+          <fieldset class="form-radio">
+            <legend class="sr-only">Escolher Operação</legend>
+            <div class="radio-income">
+              <input type="radio" name="operation" id="income" value="income" required checked>
+              <label for="income">Receita</label>
+              <i class="icon-arrow-up-circle"></i>
+            </div>
+            <div class="radio-expense">
+              <input type="radio" name="operation" id="expense" value="expense" required>
+              <label for="expense">Despesa</label>
+              <i class="icon-arrow-down-circle"></i>
+          </div>
+          </fieldset>
+          <fieldset class="form-data">
+            <div class="form-data-description">
+              <label class="sr-only" for="description">Descrição</label>
+              <input type="text" name="description" id="description" placeholder="Descrição" required>
+            </div>
+            <div class="form-data-value">
+              <label class="sr-only" for="value">Valor</label>
+              <input type="number" name="value" id="value" placeholder="0,00" step="0.01" required>
+            </div>
+            <div class="form-data-date">
+              <label class="sr-only" for="date">Data</label>
+              <input type="date" name="date" id="date" required>
+            </div>
+          </fieldset>
+        </form>
+        <div class="modal-buttons">
+          <a onclick=Modal.close() class="modal-button-cancel">Cancelar</a>
+          <button type="submit" class="modal-button-save">Salvar</button>
+        </div>
+      </div>
+    </div>
   </main>
   <footer>
     <h2 class="footer-logo">2021 - my finance<i class="icon-dollar-sign"></i></h2>
   </footer>
+  <script src="./main.js"></script>
 </body>
 </html>
