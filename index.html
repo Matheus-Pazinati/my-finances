@@ -50,43 +50,23 @@
             <th></th>
           </tr>
         </thead>
-        <tbody>
-          <tr>
-            <td class="table-body-description">Desenvolvimento de site</td>
-            <td class="table-body-value income">R$ 12.000,00</td>
-            <td class="table-body-date">13/04/2021</td>
-            <td class="table-icon-remove"><img src="./assets/images/minus.svg" alt="Ícone de remover"></td> 
-          </tr>
-          <tr>
-            <td class="table-body-description">Aluguel</td>
-            <td class="table-body-value expense">-R$ 1.200,00</td>
-            <td class="table-body-date">27/03/2021</td>
-            <td class="table-icon-remove"><img src="./assets/images/minus.svg" alt="Ícone de remover"></td>
-
-          </tr>
-          <tr>
-            <td class="table-body-description">Computador</td>
-            <td class="table-body-value income">R$ 5.400,00</td>
-            <td class="table-body-date">15/03/2021</td>
-            <td class="table-icon-remove"><img src="./assets/images/minus.svg" alt="Ícone de remover"></td>
-
-          </tr>
+        <tbody data-table-body>
         </tbody>
       </table>
     </section>
     <div class="transactions-modal" data-modal>
       <div class="modal-container">
         <h2 class="modal-title">Nova Transação</h2>
-        <form action="" class="modal-form">
+        <form action="" onsubmit="Form.submit(event)" class="modal-form">
           <fieldset class="form-radio">
             <legend class="sr-only">Escolher Operação</legend>
             <div class="radio-income">
-              <input type="radio" name="operation" id="income" value="income" required checked>
+              <input type="radio" name="operation" id="income" value="income" checked>
               <label for="income">Receita</label>
               <i class="icon-arrow-up-circle"></i>
             </div>
             <div class="radio-expense">
-              <input type="radio" name="operation" id="expense" value="expense" required>
+              <input type="radio" name="operation" id="expense" value="expense">
               <label for="expense">Despesa</label>
               <i class="icon-arrow-down-circle"></i>
           </div>
@@ -105,11 +85,11 @@
               <input type="date" name="date" id="date" required>
             </div>
           </fieldset>
+          <div class="form-buttons">
+            <a onclick=Modal.close() class="form-button-cancel">Cancelar</a>
+            <button class="form-button-save">Salvar</button>
+          </div>
         </form>
-        <div class="modal-buttons">
-          <a onclick=Modal.close() class="modal-button-cancel">Cancelar</a>
-          <button type="submit" class="modal-button-save">Salvar</button>
-        </div>
       </div>
     </div>
   </main>

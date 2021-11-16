@@ -202,13 +202,13 @@ td.expense {
   margin-top: 0.5rem;
   font-size: 1.1rem;
 }
-.modal-buttons {
+.form-buttons {
   margin: 1.5rem 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
-.modal-button-cancel, .modal-button-save {
+.form-button-cancel, .form-button-save {
   width: 45%;
   height: 3rem;
   padding: 0.75rem 0;
@@ -218,16 +218,16 @@ td.expense {
   border-radius: 0.25rem;
   cursor: pointer;
 }
-.modal-button-cancel:hover, .modal-button-save:hover {
+.form-button-cancel:hover, .form-button-save:hover {
   opacity: 1;
 }
-.modal-button-cancel {
+.form-button-cancel {
   background: #E5E5E5;
   border: 1px solid #E92929;
   text-decoration: none;
   color: #E92929;
 }
-.modal-button-save {
+.form-button-save {
   background: var(--color-green);
   border: none;
   font: 400 1rem 'Poppins', sans-serif;
