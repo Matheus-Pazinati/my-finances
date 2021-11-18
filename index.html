@@ -22,21 +22,21 @@
           Entradas
           <img src="./assets/images/income.svg" alt="Icone de entrada de dinheiro">
         </h2>
-        <p class="balance-card-value">R$ 17.400,00</p>
+        <p class="balance-card-value" data-card-income></p>
       </div>
       <div class="balance-card">
         <h2 class="balance-card-title">
           Saídas
           <img src="./assets/images/expense.svg" alt="Icone de saída de dinheiro">
         </h2>
-        <p class="balance-card-value">R$ 1200,00</p>
+        <p class="balance-card-value" data-card-expense></p>
       </div>
       <div class="balance-card balance-card-positive">
         <h2 class="balance-card-title">
           Total
           <img src="./assets/images/total.svg" alt="Icone de dinheiro">
         </h2>
-        <p class="balance-card-value">R$ 16.200,00</p>
+        <p class="balance-card-value" data-card-total></p>
       </div>
     </section>
     <section class="transactions">
@@ -78,7 +78,7 @@
             </div>
             <div class="form-data-value">
               <label class="sr-only" for="value">Valor</label>
-              <input type="number" name="value" id="value" placeholder="0,00" step="0.01" required>
+              <input type="number" name="value" id="value" placeholder="0,00" step="0.01" min="0" required>
             </div>
             <div class="form-data-date">
               <label class="sr-only" for="date">Data</label>
