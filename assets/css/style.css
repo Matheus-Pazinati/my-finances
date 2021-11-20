@@ -51,6 +51,7 @@ header {
   padding: 0 7rem 4rem 7rem;
   gap: 2rem;
   margin-top: -6.25rem;
+  justify-content: center;
 }
 .balance-card {
   background: #FEFEFE;
@@ -60,7 +61,7 @@ header {
   color: var(--color-text);
 }
 .balance-card-title {
-  font-size: 1rem;
+  font-size: 1.125rem;
   font-weight: 400;
   margin-bottom: 0.875rem;
   display: flex;
@@ -104,7 +105,7 @@ div.balance-card-negative {
 .transactions-table thead {
   color: var(--color-text-option);
   font-weight: 400;
-  font-size: 1rem;
+  font-size: 1.125rem;
 }
 .transactions-table thead tr th {
   padding: 1.25rem 2rem;
@@ -115,7 +116,7 @@ div.balance-card-negative {
 }
 .transactions-table tbody {
   background: #FEFEFE;
-  font-size: 1rem;
+  font-size: 1.125rem;
   font-weight: 400;
 }
 .transactions-table tbody tr {
@@ -234,7 +235,6 @@ td.expense {
   color: #FEFEFE;
 }
 
-
 /* ==== FOOTER ==========================================*/
 footer {
   text-align: center;
@@ -243,4 +243,39 @@ footer {
 }
 .footer-logo {
   color: var(--color-text);
+}
+
+/* ==== RESPONSIVIDADE ==========================================*/
+@media (max-width: 480px) {
+  html, body {
+    font-size: 93.75%;
+  }
+  .balance {
+    flex-direction: column;
+    padding: 0 1rem 3rem 1rem;
+  }
+  .transactions {
+    padding: 0 1rem 3rem;
+  }
+  .transactions-table {
+    display: block;
+    overflow-x: auto;
+  }
+}
+
+@media (min-width: 481px) and (max-width: 992px) {
+  html, body {
+    font-size: 93.75%;
+  }
+  .balance {
+    justify-content: center;
+    padding: 0 1rem 2rem;
+    gap: 1.5rem;
+  }
+  .balance-card {
+    padding: 1.5rem 1rem 1.125rem;
+  }
+  .transactions {
+    padding: 0 1rem 2rem;
+  }
 }
