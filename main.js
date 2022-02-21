@@ -1,4 +1,3 @@
-//Objeto que guarda os métodos de abrir e fechar a modal, utilizando o atributo onclick no HTML
 const Modal = {
   open(){
     document.querySelector('[data-modal]').classList.add('active')
@@ -40,75 +39,70 @@ const Utils = {//Pequenas funções de controle e tratamento de dados da aplica�
     }
   }
 }
+const form = document.querySelector('.modal-form')
+form.addEventListener('submit', (event) => {
+  event.preventDefault()
+  setLocalStorage()
+  innerTransaction()
+  calculateValues()
+  Utils.clearFields()
+  Modal.close()
+})
 
-const transactions = [];
-const Form = {
-  submit(event) {
-    event.preventDefault()
-    let transaction = {
-      description: document.querySelector('input#description').value,
-      amount: document.querySelector('input#value').value,
-      date: document.querySelector('input#date').value,
-      type: Utils.typeOfTransaction(),
+function setLocalStorage() {
+    const description = document.querySelector('input#description').value;
+    const amount = document.querySelector('input#value').value;
+    const date = Utils.transformDate(document.querySelector('input#date').value);
+    const type = Utils.typeOfTransaction();
+
+    const transaction = {
+        description,
+        amount,
+        date,
+        type
     }
-    transactions.push(transaction)
-    innerTransaction()
-    Balance.updateBalance(transaction)
-    Utils.clearFields()
-    Modal.close()
-  }
+
+    const savedTransactions = JSON.parse(localStorage.getItem('transactions')) || []
+    const allTransactions = [
+      ...savedTransactions,
+      transaction
+  ]
+    localStorage.setItem('transactions', JSON.stringify(allTransactions))
 }
 
-function removeTransaction(index) {//Remove a linha da transação quando o botão de excluir for clicado
-  let allTransactions = [...transactions]
-  let removedTransaction = allTransactions[index]
-  if (removedTransaction.type == "income"){
-    Balance.incomes -= removedTransaction.amount
-  } else {
-    Balance.expenses -= removedTransaction.amount
-  }
-  innerBalanceValues()
-  let rowTransaction = document.querySelector(`[data-index="${index}"]`)
-  rowTransaction.remove()
+function calculateValues() {
+  let input = 0
+  let output = 0
+  const cardIncome = document.querySelector('[data-card-income]');
+  const cardExpense = document.querySelector('[data-card-expense]');
+  const cardTotal = document.querySelector('[data-card-total]');
+
+  const savedTransactions = JSON.parse(localStorage.getItem('transactions')) || []
+  const listaData = [...savedTransactions]
+
+  const income = listaData.filter((item) => {
+    return item.type == 'income'
+  })
+
+  const expense = listaData.filter((item) => {
+    return item.type == 'expense'
+  })
+
+  income.forEach((item) => {
+    input += Number(item.amount)
+  })
+  expense.forEach((item) => {
+    output += Number(item.amount)
+  })
+  cardIncome.textContent = Utils.transformCurrency(input)
+  cardExpense.textContent = Utils.transformCurrency(output)
+  cardTotal.textContent = Utils.transformCurrency(updateTotal(input, output))
 }
 
-function innerTransaction() {
-  let body = document.querySelector('[data-table-body]')
-  let tr = document.createElement('tr')
-  transactions.forEach((transaction, index) => {
-    tr.dataset.index = index;
-    tr.innerHTML = `<td class="table-body-description">${transaction.description}</td>
-      <td class="table-body-value ${transaction.type}">${Utils.transformCurrency(transaction.amount)}</td>
-      <td class="table-body-date">${Utils.transformDate(transaction.date)}</td>
-      <td class="table-icon-remove"><img onclick="removeTransaction(${index})" src="./assets/images/minus.svg" alt="Ícone de remover"></td>`;
-    }
-  )
-  body.appendChild(tr)
-}
-
-let Balance = {
-  incomes: 0,
-  expenses: 0,
-  cardIncome: document.querySelector('[data-card-income]'),
-  cardExpense: document.querySelector('[data-card-expense]'),
-  cardTotal: document.querySelector('[data-card-total]'),
-  updateBalance(transaction) {//Atualiza os valores do balanço, verificando tipo da transação
-    if (transaction.type == "income") {
-      Balance.updateIncomes(Number(transaction.amount))
-    } else {
-      Balance.updateExpenses(Number(transaction.amount))
-    }
-    innerBalanceValues()
-  },
-  updateIncomes(value) {
-    Balance.incomes += value;
-  },
-  updateExpenses(value) {
-    Balance.expenses += value;
-  },
-  updateTotal() {//Calcula o total do balanço e aplica a classe no container dependendo do resultado (negativo ou positivo)
-    const containerTotal = Balance.cardTotal.parentElement
-    const total =  Balance.incomes - Balance.expenses
+  function updateTotal(input, output) {//Calcula o total do balanço e aplica a classe no container dependendo do resultado (negativo ou positivo)
+    const cardTotal = document.querySelector('[data-card-total]');
+    const containerTotal = cardTotal.parentElement
+    const total =  input - output
     if (total < 0 ) {
       containerTotal.classList.remove('balance-card-positive')
       containerTotal.classList.add('balance-card-negative')
@@ -118,11 +112,33 @@ let Balance = {
     }
     return total;
   }
-}
+  
+  function innerTransaction() {
+    let body = document.querySelector('[data-table-body]')
+    body.innerHTML = ""
+    const savedTransactions = JSON.parse(localStorage.getItem('transactions')) || []
+    savedTransactions.forEach((transaction, id) => {
+      body.appendChild(Transaction(transaction, id))
+    }) 
+  }
 
-function innerBalanceValues() { //Função para inserir no HTML os valores do balanço
-  Balance.cardIncome.textContent = Utils.transformCurrency(Balance.incomes)
-  Balance.cardExpense.textContent = Utils.transformCurrency(Balance.expenses)
-  Balance.cardTotal.textContent = Utils.transformCurrency(Balance.updateTotal())
-}
-innerBalanceValues()//Neste momento, os valores vão estar zerados
+  function Transaction({description, amount, date, type}, id) {
+    let tr = document.createElement('tr')
+    const content = `<td class="table-body-description">${description}</td>
+    <td class="table-body-value ${type}">${Utils.transformCurrency(amount)}</td>
+    <td class="table-body-date">${date}</td>
+    <td class="table-icon-remove"><img onclick="removeTransaction(${id})" src="./assets/images/minus.svg" alt="Ícone de remover"></td>`;
+    tr.innerHTML = content
+    return tr
+  }
+
+  function removeTransaction(id) {
+    const savedTransactions = JSON.parse(localStorage.getItem('transactions')) || []
+    savedTransactions.splice(id, 1)
+    localStorage.setItem('transactions', JSON.stringify(savedTransactions))
+    innerTransaction()
+    calculateValues()
+  }
+
+  innerTransaction()
+  calculateValues()
