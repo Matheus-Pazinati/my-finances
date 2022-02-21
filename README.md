@@ -20,9 +20,9 @@ Você pode utilizar a aplicação através deste link: <a href="https://matheus-
 <br>
 <h2>📌 Melhorias a serem implementadas</h2>
   <ul>
-    <li>Salvar os dados no local storage</li>
-    <li>Mostrar as transações em ordem de acordo com a data</li>
+    <li>Salvar os dados no local storage - Ok ✔️</li>
     <li>Separar as funcionalidades em outros arquivos javascript</li>
+    <li>Mostrar as transações em ordem de acordo com a data</li>
   </ul>
 <br>
 <h2>🏷️ Layout</h2>
