@@ -40,7 +40,7 @@
       </div>
     </section>
     <section class="transactions">
-      <a onclick=Modal.open() class="new-transaction">+ Nova Transação</a>
+      <a class="new-transaction">+ Nova Transação</a>
       <table class="transactions-table">
         <thead>
           <tr>
@@ -57,7 +57,7 @@
     <div class="transactions-modal" data-modal>
       <div class="modal-container">
         <h2 class="modal-title">Nova Transação</h2>
-        <form action="" onsubmit="Form.submit(event)" class="modal-form">
+        <form action="" class="modal-form">
           <fieldset class="form-radio">
             <legend class="sr-only">Escolher Operação</legend>
             <div class="radio-income">
@@ -86,7 +86,7 @@
             </div>
           </fieldset>
           <div class="form-buttons">
-            <a onclick=Modal.close() class="form-button-cancel">Cancelar</a>
+            <a class="form-button-cancel">Cancelar</a>
             <button class="form-button-save">Salvar</button>
           </div>
         </form>
@@ -96,6 +96,6 @@
   <footer>
     <h2 class="footer-logo">2021 - my finance<i class="icon-dollar-sign"></i></h2>
   </footer>
-  <script src="./main.js"></script>
+  <script src="./index.js" type="module"></script>
 </body>
 </html>
