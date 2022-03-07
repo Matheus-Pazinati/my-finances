@@ -246,7 +246,7 @@ footer {
 }
 
 /* ==== RESPONSIVIDADE ==========================================*/
-@media (max-width: 480px) {
+@media (max-width: 750px) {
   html, body {
     font-size: 93.75%;
   }
@@ -263,7 +263,7 @@ footer {
   }
 }
 
-@media (min-width: 481px) and (max-width: 992px) {
+@media (min-width: 751px) and (max-width: 992px) {
   html, body {
     font-size: 93.75%;
   }
