@@ -1,9 +1,10 @@
 import { Utils } from "./utils.js";
+import { orderDates } from "./order-dates.js";
 
 export function setLocalStorage() {
   const description = document.querySelector('input#description').value;
   const amount = document.querySelector('input#value').value;
-  const date = Utils.transformDate(document.querySelector('input#date').value);
+  const date = document.querySelector('input#date').value;
   const type = Utils.typeOfTransaction();
 
   const transaction = {
@@ -18,5 +19,8 @@ export function setLocalStorage() {
     ...savedTransactions,
     transaction
 ]
+
+  orderDates(allTransactions)
+
   localStorage.setItem('transactions', JSON.stringify(allTransactions))
 }
